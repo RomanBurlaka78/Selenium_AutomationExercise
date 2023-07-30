@@ -33,14 +33,16 @@ public class Steps {
     }
     @When("Verify that home page is visible successfully")
     public void verify_that_home_page_is_visible_successfully() {
-
+        homePage.getTilePage();
     }
     @Then("Click on {string} button")
     public void click_on_button(String string) {
+        homePage.clickLogin();
 
     }
     @Then("Verify {string} is visible")
     public void verify_is_visible(String string) {
+        homePage.showTitleLogin();
 
     }
     @Then("Enter name and email address and Click {string} button")
