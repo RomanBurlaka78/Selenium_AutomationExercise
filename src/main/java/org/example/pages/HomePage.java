@@ -24,6 +24,12 @@ public class HomePage {
     WebElement titleLoginForm;
 
 
+
+
+
+
+
+
     //Methods
 
     public void goToHomePage() {
@@ -37,13 +43,19 @@ public class HomePage {
 
     }
 
-    public void closeDriver() {
-        driver.quit();
-    }
-
     public void getTilePage() {
         System.out.println(driver.getTitle());
 
+    }
+
+
+
+
+
+
+
+    public void closeDriver() {
+        driver.quit();
     }
 
 
