@@ -35,7 +35,7 @@ public class Steps {
     }
 
     @When("Verify that home page is visible successfully")
-    public void verify_that_home_page_is_visible_successfully() {
+    public void i_verify_that_home_page_is_visible_successfully() {
         homePage.getTilePage();
     }
 
@@ -56,7 +56,7 @@ public class Steps {
     public void enter_name_and_email_address_and_click_button(String string) {
         loginPage = pageObjectManager.getLoginPage();
         loginPage.fillSignUpName("Robert");
-        loginPage.fillSignUpEmail("wert1@wp.pl");
+        loginPage.fillSignUpEmail("wert9@wp.pl");
         loginPage.signUp();
 
     }
@@ -65,7 +65,6 @@ public class Steps {
     public void verify_that_is_visible_information(String string) {
         signUpPage = pageObjectManager.getSignUpPage();
         signUpPage.getSignUpTitle();
-
 
     }
 
@@ -84,28 +83,86 @@ public class Steps {
 
     @Then("Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number")
     public void fill_details_first_name_last_name_company_address_address2_country_state_city_zipcode_mobile_number() {
-        signUpPage.selectCountry("Canada");
+
+        signUpPage.fillFirstNameUser("Roberto");
+        signUpPage.fillLastUserName("Rodrigez");
+        signUpPage.fillCompanyUser("MyHitos");
+        signUpPage.fillAddress1("Paris");
+        signUpPage.fillAddress2("Tokyo");
+        signUpPage.fillCountry();
+        signUpPage.fillState("Florida");
+        signUpPage.fillCity("Texa");
+        signUpPage.filZipCode("1223112");
+        signUpPage.fillMobileNumber("1231123343");
 
     }
 
     @Then("Click {string}")
     public void click(String string) {
+        signUpPage.clickCreateAccountButton();
 
     }
 
     @Then("Verify that {string} is  visible")
     public void verify_that_is_visible_account(String string) {
+        signUpPage.showAccountCreated();
 
     }
 
     @Then("Click {string} button")
     public void click_button(String string) {
+        signUpPage.clickContinueButton();
 
     }
 
     @Then("Verify that {string} is visible and click {string} button")
     public void verify_that_is_visible_and_click_button(String string, String string2) {
-        //homePage.closeDriver();
+        homePage.closeDriver();
 
     }
+
+    //scenario 2
+    @Given("I am on HomePageLogin {string}")
+    public void i_am_on_home_page_login(String string) {
+
+    }
+    @When("I verify that home page is visible successfully")
+    public void then_i_verify_that_home_page_is_visible_successfully() {
+
+    }
+    @Then("I Click on {string} button")
+    public void i_click_on_button(String string) {
+
+    }
+    @Then("I Verify {string} is visible")
+    public void i_verify_is_visible(String string) {
+
+    }
+    @Then("I Enter correct email address and password")
+    public void i_enter_correct_email_address_and_password() {
+
+    }
+    @Then("I Click {string} button")
+    public void i_click_button(String string) {
+
+    }
+    @Then("I Verify that {string} is visible")
+    public void i_verify_that_is_visible(String string) {
+
+    }
+    @Then("Then I Click 'Delete Account' button")
+    public void then_i_click_delete_button(String string) {
+
+    }
+    @Then  ("I Verify  'ACCOUNT DELETED!' is visible")
+    public void i_verify_account_deleted_is_visible(String string) {
+
+    }
+
+
+
+
+
+
+
 }

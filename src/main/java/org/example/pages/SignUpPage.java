@@ -1,6 +1,7 @@
 package org.example.pages;
 
 import io.cucumber.java.zh_cn.假如;
+import org.asynchttpclient.util.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,18 +51,30 @@ public class SignUpPage {
     WebElement address1;
     @FindBy(xpath = "//input[@id=\"address2\"]")
     WebElement address2;
-    @FindBy(xpath = "//select[@id=\"country\"]/option")
+    @FindBy(xpath = "//select[@id=\"country\"]/option[@value=\"Canada\"]")
     WebElement countryUser;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id=\"state\"]")
     WebElement stateUser;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id=\"city\"]")
     WebElement cityUser;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id=\"zipcode\"]")
     WebElement zipCodeUser;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//input[@id=\"mobile_number\"]")
     WebElement mobileNumberUser;
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//button[@data-qa=\"create-account\"]")
     WebElement buttonCreateAccount;
+
+    //Account created
+    @FindBy(xpath = "//h2[@data-qa=\"account-created\"]/b")
+    WebElement titleAccountCreated;
+    //Continue
+    @FindBy(xpath = "//a[@data-qa=\"continue-button\"]")
+    WebElement continueButton;
+    //Dismiss Add
+    @FindBy(xpath = "//div[@id=\"dismiss-button\"]")
+    WebElement dismissAd;
+    @FindBy(xpath = "//a[@href=\"/delete_account\"]")
+    WebElement deleteAccount;
 
 
     public void getSignUpTitle() {
@@ -69,7 +82,7 @@ public class SignUpPage {
     }
 
     public void enterAccountInformation() {
-        nameUser.clear();
+        radioButtonMr.click();
         passwordUser.sendKeys("123456!");
         dateOfBirthUser.click();
         monthOfBirthUser.click();
@@ -78,12 +91,64 @@ public class SignUpPage {
 
     public void clickSignUpNewsLetter() {
         signUpNewsLetter.click();
-        ;
+
         signUpSpecialOffer.click();
     }
 
-
-    public void selectCountry(String country) {
-         countryUser.getTagName().equals(country);
+    public void fillFirstNameUser(String userName) {
+        firstNameUser.sendKeys(userName);
     }
+
+    public void fillLastUserName(String userLastName) {
+        lastNameUser.sendKeys(userLastName);
+    }
+
+    public void fillCompanyUser(String userCompany) {
+        companyName.sendKeys(userCompany);
+    }
+
+    public void fillAddress1(String addressUser1) {
+        address1.sendKeys(addressUser1);
+    }
+
+    public void fillAddress2(String addressUser2) {
+        address2.sendKeys(addressUser2);
+    }
+
+    public void fillCountry() {
+        countryUser.click();
+    }
+
+    public void fillState(String state) {
+        stateUser.sendKeys(state);
+    }
+
+    public void fillCity(String city) {
+        cityUser.sendKeys(city);
+    }
+
+    public void filZipCode(String zip) {
+        zipCodeUser.sendKeys(zip);
+    }
+
+    public void fillMobileNumber(String mobileNumber) {
+        mobileNumberUser.sendKeys(mobileNumber);
+
+    }
+
+    public void clickCreateAccountButton() {
+        buttonCreateAccount.submit();
+    }
+
+    public void showAccountCreated() {
+        System.out.println(titleAccountCreated.getText());
+    }
+
+    public void clickContinueButton() {
+        continueButton.click();
+       // System.out.println(dismissAd.getText());
+        deleteAccount.click();
+
+    }
+
 }
