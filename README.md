@@ -1,2 +1,2 @@
 # Selenium_AutomationExercise
-## Project for automatisation E-commerce. Selenium Web Driver, BDD Cucumber, Page object model.
+## Project for creating End2End tests to E-commerce. Selenium Web Driver, BDD Cucumber, Page object model.
