@@ -146,7 +146,7 @@ public class SignUpPage {
 
     public void clickContinueButton() {
         continueButton.click();
-       // System.out.println(dismissAd.getText());
+        System.out.println(dismissAd.getText());
         deleteAccount.click();
 
     }

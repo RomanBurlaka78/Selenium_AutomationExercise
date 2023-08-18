@@ -22,6 +22,8 @@ public class HomePage {
     WebElement login;
     @FindBy(xpath = "//div[@class=\"signup-form\"]/h2")
     WebElement titleLoginForm;
+    @FindBy(xpath = "//title")
+    WebElement titleHomePage;
 
 
 
@@ -38,16 +40,16 @@ public class HomePage {
     public void clickLogin() {
         login.click();
     }
+
     public void showTitleLogin(){
         System.out.println(titleLoginForm.getText());
-
     }
 
-    public void getTilePage() {
+    public String getTilePage() {
         System.out.println(driver.getTitle());
-
+        System.out.println(driver.getTitle());
+        return driver.getTitle();
     }
-
 
 
 

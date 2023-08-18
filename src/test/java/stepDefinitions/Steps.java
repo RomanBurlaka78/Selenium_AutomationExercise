@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -7,10 +8,12 @@ import org.example.managers.PageObjectManager;
 import org.example.pages.HomePage;
 import org.example.pages.LoginPage;
 import org.example.pages.SignUpPage;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Steps {
@@ -19,23 +22,24 @@ public class Steps {
     LoginPage loginPage;
     SignUpPage signUpPage;
 
+
     PageObjectManager pageObjectManager;
 
-    @Given("I am on HomePage {string}")
-    public void i_am_on_home_page(String string) {
-        ChromeOptions ops = new ChromeOptions();
-        System.setProperty("webdriver.chrome.driver", "C:\\Disk D\\Java-Selenium\\Selenium_AutomationExercise\\src\\main\\resources\\chromedriverNew.exe");
-        WebDriver driver = new ChromeDriver(ops);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        pageObjectManager = new PageObjectManager(driver);
-        homePage = pageObjectManager.getHomePage();
-        homePage.goToHomePage();
+
+
+    @Given("I am on HomePage'")
+    public void i_am_on_home_page() {
+        TestBase testBase = new TestBase();
+        driver = testBase.initialize();
+
 
     }
 
     @When("Verify that home page is visible successfully")
     public void i_verify_that_home_page_is_visible_successfully() {
+
+        homePage = pageObjectManager.getHomePage();
+        homePage.goToHomePage();
         homePage.getTilePage();
     }
 
@@ -56,8 +60,8 @@ public class Steps {
     public void enter_name_and_email_address_and_click_button(String string) {
         loginPage = pageObjectManager.getLoginPage();
         loginPage.fillSignUpName("Robert");
-        loginPage.fillSignUpEmail("wert9@wp.pl");
-        loginPage.signUp();
+        loginPage.fillSignUpEmail("wert10@wp.pl");
+        loginPage.clickSignUpSubmit();
 
     }
 
@@ -118,51 +122,84 @@ public class Steps {
     @Then("Verify that {string} is visible and click {string} button")
     public void verify_that_is_visible_and_click_button(String string, String string2) {
         homePage.closeDriver();
+        driver.quit();
 
     }
+
+    //***************************************
+
+    //
 
     //scenario 2
     @Given("I am on HomePageLogin {string}")
     public void i_am_on_home_page_login(String string) {
-
+        TestBase testBase = new TestBase();
+        driver = testBase.initialize();
     }
+
     @When("I verify that home page is visible successfully")
     public void then_i_verify_that_home_page_is_visible_successfully() {
+        pageObjectManager = new PageObjectManager(driver);
+        homePage = pageObjectManager.getHomePage();
+        homePage.goToHomePage();
+        homePage.getTilePage();
+        Assertions.assertEquals("Automation Exercise", homePage.getTilePage());
 
     }
+
     @Then("I Click on {string} button")
     public void i_click_on_button(String string) {
 
+        homePage.clickLogin();
+
     }
+
     @Then("I Verify {string} is visible")
     public void i_verify_is_visible(String string) {
+        loginPage = pageObjectManager.getLoginPage();
+        System.out.println(loginPage.getloginTitle());
+        Assertions.assertEquals("Login to your account", loginPage.getloginTitle());
 
     }
+
     @Then("I Enter correct email address and password")
-    public void i_enter_correct_email_address_and_password() {
+    public void iEnterCorrectEmailAddressAndPassword(DataTable table) {
+        //List<List<String>> data = table.cells();
+        loginPage.fillLoginEmail("wert100@wp.pl");
+        loginPage.fillLoginPassword("wert100@wp.pl");
+
 
     }
+
+
     @Then("I Click {string} button")
     public void i_click_button(String string) {
+        loginPage.clickLoginSubmit();
 
     }
+
     @Then("I Verify that {string} is visible")
     public void i_verify_that_is_visible(String string) {
+        Assertions.assertEquals("Robert", loginPage.showUserLoggedName());
 
-    }
-    @Then("Then I Click 'Delete Account' button")
-    public void then_i_click_delete_button(String string) {
-
-    }
-    @Then  ("I Verify  'ACCOUNT DELETED!' is visible")
-    public void i_verify_account_deleted_is_visible(String string) {
 
     }
 
+    @Then("Then i click  {string} button")
+    public void then_i_click_button(String string) {
+        loginPage.logOut();
+        Assertions.assertEquals("logout", loginPage.logOut());
 
 
+    }
+
+    @Then("Finaly i verify  {string} is visible")
+    public void finaly_i_verify_is_visible(String string) {
+        System.out.println("Account deleted");
+        driver.quit();
 
 
+    }
 
 
 }

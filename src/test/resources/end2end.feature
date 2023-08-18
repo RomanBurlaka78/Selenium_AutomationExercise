@@ -5,7 +5,7 @@ Feature: Automation end2end tests   to verify users scenarios on 'http://automat
   So that I can access the website's features
 
   Scenario: Registration new user
-    Given I am on HomePage 'http://automationexercise.com'
+    Given I am on HomePage'
     When  Verify that home page is visible successfully
     Then Click on 'Signup / Login' button
     Then Verify 'New User Signup!' is visible
@@ -25,10 +25,11 @@ Feature: Automation end2end tests   to verify users scenarios on 'http://automat
     Then I Click on 'Signup / Login' button
     Then I Verify 'Login to your account' is visible
     Then I Enter correct email address and password
+    |email|password|
     When I Click 'login' button
     Then I Verify that 'Logged in as username' is visible
     Then Then i click  'Delete Account' button
-    Then I Verify  'ACCOUNT DELETED!' is visible
+    Then Finaly i verify  'ACCOUNT DELETED!' is visible
 
 
 
