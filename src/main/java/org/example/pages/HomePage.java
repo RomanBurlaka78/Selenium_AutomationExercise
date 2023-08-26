@@ -18,18 +18,8 @@ public class HomePage {
     }
 
     //Locators
-    @FindBy(xpath = "//a[@href=\"/login\"]")
+    @FindBy(xpath = "")
     WebElement login;
-    @FindBy(xpath = "//div[@class=\"signup-form\"]/h2")
-    WebElement titleLoginForm;
-    @FindBy(xpath = "//title")
-    WebElement titleHomePage;
-
-
-
-
-
-
 
 
     //Methods
@@ -37,26 +27,13 @@ public class HomePage {
     public void goToHomePage() {
         driver.get("http://automationexercise.com");
     }
+
     public void clickLogin() {
         login.click();
     }
 
-    public void showTitleLogin(){
-        System.out.println(titleLoginForm.getText());
-    }
 
-    public String getTilePage() {
-        System.out.println(driver.getTitle());
-        System.out.println(driver.getTitle());
-        return driver.getTitle();
-    }
-
-
-
-
-
-
-    public void closeDriver() {
+    public void tearDown() {
         driver.quit();
     }
 
